@@ -4,9 +4,9 @@ import pandas as pd
 import numpy as np
 
 #load the model and label encoder
-model = joblib.load("Attrition project1/employee_attrition.pkl")
-label_encoder = joblib.load("Attrition project1/label_encoder.pkl")
-feature_columns = joblib.load("Attrition project1/feature_columns.pkl")
+model = joblib.load("employee_attrition.pkl")
+label_encoder = joblib.load("label_encoder.pkl")
+feature_columns = joblib.load("feature_columns.pkl")
 
 #Set up the streamlit app
 st.title("Employee Attrition Prediction")
@@ -20,7 +20,7 @@ def user_input_features():
     inputs['Age'] =st.sidebar.number_input("Age", min_value=18, max_value=65, value=30)
     inputs['MonthlyIncome']=st.sidebar.number_input("Monthly Income", min_value=1000, max_value=20000,value=5000)
     inputs['JobSatisfaction']=st.sidebar.selectbox("Job Satisfaction", [1, 2, 3, 4])
-    inputs['OverTime']=st.sidebar.selectbox("Over Time", ["Yes", "NO"])
+    inputs['OverTime']=st.sidebar.selectbox("Over Time", ["Yes", "No"])
     inputs['DistanceFromHome']=st.sidebar.number_input("Distance From Home", min_value=0, max_value=50, value=10)
 
     data = {}
@@ -41,7 +41,7 @@ if st.button("Prediction Attrition"):
     prediction_proba=model.predict_proba(input_df)
 
     st.subheader("Prediction")
-    if prediction == 1:
+    if prediction[0] == 1:
         st.error("The employee is likely to leave the company.")
     else:
         st.success("The employee is likely to stay with the company.")

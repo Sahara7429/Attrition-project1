@@ -4,10 +4,9 @@ import pandas as pd
 import numpy as np
 
 #load the model and label encoder
-model = joblib.load("Attrition project1/employee_attrition.pkl")
-label_encoder = joblib.load("Attrition project1/employee_attrition.pkl")
-feature_columns = joblib.load("Attrition project1/feature_columns.pkl")
-
+model = joblib.load("employee_attrition.pkl")
+label_encoder = joblib.load("label_encoder.pkl")
+feature_columns = joblib.load("feature_columns.pkl")
 #Set up the streamlit app
 st.title("Employee Attrition Prediction")
 st.markdown("Enter the employee details to predict whether they are" "Likely to leave the company.")
